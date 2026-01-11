@@ -1,0 +1,14 @@
+---
+- name: Check system uptime and load average
+  hosts: all
+  gather_facts: no
+  become: false
+
+  tasks:
+    - name: Get uptime and load average
+      command: uptime
+      register: uptime_out
+
+    - name: Display uptime and load average
+      debug:
+        msg: "{{ uptime_out.stdout }}"
